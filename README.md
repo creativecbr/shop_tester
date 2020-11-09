@@ -3,7 +3,7 @@
 
 Simple shop tester, implemented in selenium technology.
 
-## SHOP uBrokeIt
+## Shop uBrokeIt
 
 Automatical tester will test site 
 ```http://3.209.82.53/``` 
