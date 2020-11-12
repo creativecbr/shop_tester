@@ -32,7 +32,7 @@ public class PageController {
             for (int i = 0; i < quantity; i++) {
                 String address = addresses.get(i % (addresses.size()));
                 if (!addProductToBag(address)) {
-                    addresses.set(i % (addresses.size()), "https://3.209.82.53/14-szkla-hartowane");
+                    addresses.set(i % (addresses.size()), addresses.get((i+1) % (addresses.size())));
                     i--;
                 }
             }
@@ -57,16 +57,34 @@ public class PageController {
             }
 
             List<WebElement> products = driver.findElements(By.xpath("//div[@class='thumbnail-container']/a"));
+
             int product = getRandomInt(0, products.size() - 1);
             products.get(product).click();
-            getRandomVariants();
 
-            getRandomQuantity();
-
-            addToBag();
-            return true;
+            if(productIsAvailable())
+            {
+                getRandomVariants();
+                getRandomQuantity();
+                addToBag();
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         } else
             return false;
+    }
+
+    /**
+     * Checking is quantity of product greater than 0.
+     * @return return true if product is available.
+     */
+    private boolean productIsAvailable() {
+
+        WebElement button = driver.findElement(By.xpath("//div[@class='product-add-to-cart']/div/div/button"));
+
+        return button.isEnabled();
     }
 
     /**

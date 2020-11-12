@@ -14,5 +14,4 @@ public interface Consts {
 
     public static final Integer QUANTITY_OF_BUYING_PRODUCTS = 5;
 
-
 }
