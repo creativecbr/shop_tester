@@ -11,4 +11,8 @@ public interface Consts {
     public static final Integer AMOUNT_OF_CATEGORIES = 2;
 
     public static final Integer QUANTITY_OF_REMOVING_PRODUCTS = 1;
+
+    public static final Integer QUANTITY_OF_BUYING_PRODUCTS = 5;
+
+
 }

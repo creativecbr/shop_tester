@@ -17,11 +17,12 @@ Made with **Selenium** platform.
 
  QUANTITY_OF_REMOVING_PRODUCTS          1               (o) Quantity of remove products from cart.
 
+ QUANTITY_OF_BUYING_PRODUCTS            1               (u) Quantity of pieces of single product added to the cart.
 ```
 
 ## Provides
 
-* Add  products(n) to the cart from different categories(m).
+* Add (n)products in (u)pieces to the cart from different categories(m).
 * Remove products(o) from the cart.
 * Create a new account while making an order.
     * Choose one of the two suppliers.

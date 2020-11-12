@@ -59,7 +59,6 @@ public class PageController {
             List<WebElement> products = driver.findElements(By.xpath("//div[@class='thumbnail-container']/a"));
             int product = getRandomInt(0, products.size() - 1);
             products.get(product).click();
-
             getRandomVariants();
 
             getRandomQuantity();
@@ -88,9 +87,18 @@ public class PageController {
      * Putting random quantity of product into input field. Between 1 and 5 products.
      */
     private void getRandomQuantity() {
+
         WebElement element = driver.findElement(By.xpath("//input[@id='quantity_wanted']"));
         JavascriptExecutor jse = (JavascriptExecutor) driver;
-        String argument = "arguments[0].value='" + getRandomInt(1, 5).toString() + "';";
+        String argument = "";
+        if(Consts.QUANTITY_OF_BUYING_PRODUCTS == 1)
+        {
+            argument = "arguments[0].value='1';";
+        }
+        else
+        {
+            argument = "arguments[0].value='" + getRandomInt(1, Consts.QUANTITY_OF_BUYING_PRODUCTS+1).toString() + "';";
+        }
         jse.executeScript(argument, element);
     }
 
@@ -99,12 +107,22 @@ public class PageController {
      */
     private void getRandomVariants() {
 
-        if (driver.findElements(By.className("product-variants-item")).size() > 0) {
-            List<WebElement> containersVariant = driver.findElements(By.className("product-variants-item"));
+        // ul li variants
+        if (driver.findElements(By.xpath("//div[@class='product-variants']/div/ul")).size() > 0)
+        {
+            List<WebElement> containersVariant = driver.findElements(By.xpath("//div[@class='product-variants']/div/ul"));
             for (WebElement e : containersVariant) {
-                List<WebElement> variants = e.findElements(By.xpath("ul/li"));
+                List<WebElement> variants = e.findElements(By.xpath("li"));
                 variants.get(getRandomInt(0, variants.size())).click();
             }
+        }
+
+        // option variants
+        if(driver.findElements(By.xpath("//div[@class='product-variants']/div/select")).size() > 0)
+        {
+            Select dropdown = new Select(driver.findElement(By.xpath("//div[@class='product-variants']/div/select")));
+            int amount = driver.findElements(By.xpath("//div[@class='product-variants']/div/select/option")).size();
+            dropdown.selectByIndex(getRandomInt(0, amount));
         }
     }
 
@@ -336,10 +354,8 @@ public class PageController {
      */
     private void goToAccount() {
 
-
         WebElement account = driver.findElement(By.xpath("//div[@class='user-info']/a[@class='account']"));
         account.click();
-
 
     }
 
