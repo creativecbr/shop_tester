@@ -43,7 +43,7 @@ public class PageController {
      * Adding one product to bag in specified category, included random variants, random quantity, random page of products in category.
      *
      * @param address specified address of category of products.
-     * @return confirmation if operation was succesfull.
+     * @return confirmation if operation was successful.
      */
     private Boolean addProductToBag(String address) {
         driver.get(address);
@@ -160,9 +160,15 @@ public class PageController {
     private int getLastPageNumber() {
 
         try {
-            WebElement pagination = driver.findElement(By.className("pagination"));
-            List<WebElement> paginations = pagination.findElements(By.tagName("a"));
-            return Integer.parseInt(paginations.get(paginations.size() - 2).getText());
+            if(driver.findElements(By.className("pagination")).size() > 0)
+            {
+                WebElement pagination = driver.findElement(By.className("pagination"));
+                List<WebElement> paginations = pagination.findElements(By.tagName("a"));
+                return Integer.parseInt(paginations.get(paginations.size() - 2).getText());
+            }
+            else{
+                return 0;
+            }
         } catch (Exception e) {
             return 0;
         }
