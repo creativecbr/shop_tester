@@ -1,15 +1,15 @@
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
-
-
+import consts.Consts;
 
 public class Main {
 
-    public static void main(String [] args)
-    {
-        WebDriver driver = new ChromeDriver();
-        driver.get("http://3.209.82.53/");
+
+    public static void main(String[] args) {
+        PageController controller = new PageController();
+
+        controller.addProductsToBag(Consts.AMOUNT_OF_PRODUCTS);
+        controller.deleteProductsFromBag(Consts.QUANTITY_OF_REMOVING_PRODUCTS);
+        controller.realizeOrderWithCreatingAccount();
+        controller.checkOrderStatusOnNewAccount();
     }
 
-    //https://www.selenium.dev/documentation/en/webdriver/browser_manipulation/
 }
