@@ -31,5 +31,5 @@ Made with **Selenium** platform.
 
  -----
 
-###### Copyright 2020, Biznes Elektroniczny
+###### xvc_studio © 2020, Biznes Elektroniczny
 
