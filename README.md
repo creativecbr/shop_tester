@@ -1,7 +1,7 @@
 # SHOP TESTER
 
 Created for testing **uBrokeIt** page, address: 
-> https://3.209.82.53/
+> *now not available*
 
 Made with **Selenium** platform.
 > https://www.selenium.dev/
